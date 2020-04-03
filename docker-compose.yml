@@ -1,0 +1,17 @@
+version: "3"
+
+services: 
+    app:
+        build: 
+            # . means current directory
+            context: .
+        ports:
+             # we are mapping 8000 form our host to 8000 on our image
+            - "8000:8000"
+        # it makes the docker image update when ever we change our main project
+        volumes: 
+            - ./app:/app
+        # > says that it is multi lined
+        # 0.0.0.0:8000 means it runs on all ip adderes on docker container
+        command: >
+            sh -c "python manage.py runserver 0.0.0.0:8000"

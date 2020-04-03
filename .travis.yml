@@ -1,0 +1,14 @@
+language: python
+python:
+    -"3.6"
+
+services:
+    -docker
+
+#before script which will run first
+before_script : pip install docker-compose
+
+script:
+    - docker-compose run app sh -c "python manage.py test && flake8"
+
+# if these all things don't work it will give a message saying the build is broken
